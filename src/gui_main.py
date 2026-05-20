@@ -4,6 +4,7 @@ from tkinter import messagebox
 
 from src.gui_center import CenterPanel
 from src.gui_panels import LeftPanel, RightPanel
+from src.gui_rtl import rtl
 from src.sdk import DungeonMasterSDK
 
 BG = "#1a1a2e"
@@ -24,10 +25,6 @@ class App(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self._on_quit)
         self._build_layout()
         self._refresh_panels()
-
-    # ------------------------------------------------------------------
-    # Layout construction
-    # ------------------------------------------------------------------
 
     def _build_layout(self) -> None:
         main = tk.Frame(self, bg=BG)
@@ -53,7 +50,7 @@ class App(tk.Tk):
         entry_row = tk.Frame(bottom, bg=PANEL_BG)
         entry_row.pack(fill="x", padx=10, pady=(4, 4))
 
-        send_btn = tk.Button(entry_row, text="שלח ⏎", bg=ACCENT, fg="white",
+        send_btn = tk.Button(entry_row, text=rtl("שלח ⏎"), bg=ACCENT, fg="white",
                               font=("Arial", 11, "bold"), command=self._on_send,
                               relief="flat", padx=14, cursor="hand2")
         send_btn.pack(side="left")
@@ -67,19 +64,15 @@ class App(tk.Tk):
         btn_row = tk.Frame(bottom, bg=PANEL_BG)
         btn_row.pack(fill="x", padx=10)
         for label, cmd in [
-            ("עזרה", lambda: self._quick("עזרה, מה אני יכול לעשות?")),
-            ("שמור", self._on_save),
-            ("טען", self._on_load),
-            ("מלאי", lambda: self._quick("הצג את המלאי שלי")),
-            ("יציאה", self._on_quit),
+            (rtl("עזרה"), lambda: self._quick("עזרה, מה אני יכול לעשות?")),
+            (rtl("שמור"), self._on_save),
+            (rtl("טען"), self._on_load),
+            (rtl("מלאי"), lambda: self._quick("הצג את המלאי שלי")),
+            (rtl("יציאה"), self._on_quit),
         ]:
             tk.Button(btn_row, text=label, bg=BUTTON_BG, fg=TEXT, font=("Arial", 10),
                        command=cmd, relief="flat", padx=12, pady=3,
                        cursor="hand2").pack(side="left", padx=3)
-
-    # ------------------------------------------------------------------
-    # Event handlers
-    # ------------------------------------------------------------------
 
     def _on_send(self) -> None:
         text = self._entry.get().strip()
@@ -122,7 +115,7 @@ class App(tk.Tk):
             self._sdk.save_game()
             self._right.log_event("משחק נשמר")
         except Exception as exc:
-            messagebox.showerror("שגיאת שמירה", str(exc))
+            messagebox.showerror(rtl("שגיאת שמירה"), str(exc))
 
     def _on_load(self) -> None:
         try:
@@ -131,10 +124,10 @@ class App(tk.Tk):
             self._center.add_system("משחק נטען בהצלחה")
             self._right.log_event("משחק נטען")
         except Exception as exc:
-            messagebox.showerror("שגיאת טעינה", str(exc))
+            messagebox.showerror(rtl("שגיאת טעינה"), str(exc))
 
     def _on_quit(self) -> None:
-        if messagebox.askyesno("יציאה", "האם לשמור לפני היציאה?"):
+        if messagebox.askyesno(rtl("יציאה"), rtl("האם לשמור לפני היציאה?")):
             try:
                 self._sdk.save_game()
             except Exception:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 import itertools
 import tkinter as tk
+from src.gui_rtl import rtl
 
 PANEL_BG = "#16213e"
 ENTRY_BG = "#0f3460"
@@ -58,20 +59,20 @@ class CenterPanel(tk.Frame):
     # ------------------------------------------------------------------
 
     def add_player_message(self, text: str) -> None:
-        self._insert("אתה:\n", "player_lbl")
-        self._insert(f"{text}\n\n", "player")
+        self._insert(rtl("אתה:") + "\n", "player_lbl")
+        self._insert(rtl(text) + "\n\n", "player")
 
     def add_dm_message(self, text: str) -> None:
-        self._insert("דאנג'ן מאסטר:\n", "dm_lbl")
-        self._insert(f"{text}\n\n", "dm")
+        self._insert(rtl("דאנג'ן מאסטר:") + "\n", "dm_lbl")
+        self._insert(rtl(text) + "\n\n", "dm")
         self._scroll_bottom()
 
     def add_error(self, text: str) -> None:
-        self._insert(f"⚠ {text}\n\n", "error")
+        self._insert(rtl(f"⚠ {text}") + "\n\n", "error")
         self._scroll_bottom()
 
     def add_system(self, text: str) -> None:
-        self._insert(f"— {text} —\n\n", "sys")
+        self._insert(rtl(f"— {text} —") + "\n\n", "sys")
         self._scroll_bottom()
 
     def start_loading(self) -> None:
@@ -92,7 +93,7 @@ class CenterPanel(tk.Frame):
     def _animate(self) -> None:
         if not self._loading:
             return
-        self._status_var.set(f"הדאנג'ן מאסטר חושב {next(self._spinner)}")
+        self._status_var.set(rtl(f"הדאנג'ן מאסטר חושב {next(self._spinner)}"))
         self._loading_id = self.after(100, self._animate)
 
     def _insert(self, text: str, tag: str) -> None:

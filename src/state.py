@@ -22,6 +22,7 @@ class GameState:
     history: list[dict[str, Any]] = field(default_factory=list)
     turn_count: int = 0
     created_at: str = field(default_factory=lambda: datetime.now().isoformat())
+    context_summary: str = ""
 
     def save(self, filepath: str | Path) -> None:
         path = Path(filepath)
@@ -38,6 +39,7 @@ class GameState:
             "history": self.history,
             "turn_count": self.turn_count,
             "created_at": self.created_at,
+            "context_summary": self.context_summary,
         }
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -51,6 +53,7 @@ class GameState:
             history=data.get("history", []),
             turn_count=data.get("turn_count", 0),
             created_at=data.get("created_at", datetime.now().isoformat()),
+            context_summary=data.get("context_summary", ""),
         )
 
     @classmethod
