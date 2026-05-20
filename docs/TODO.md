@@ -8,9 +8,9 @@
 - [x] Implement `src/state.py` (Player dataclass, save/load to JSON).
 
 ## Phase 2: AI Agent & Logic
-- [ ] Implement `WebSearchTool` for real-time data fetching.
-- [ ] Implement `src/agent.py` with system prompt for a Hebrew DM.
-- [ ] Add FinOps History Truncation (keep only the last 5 interactions).
+- [x] Implement `WebSearchTool` for real-time data fetching.
+- [x] Implement `src/agent.py` with system prompt for a Hebrew DM.
+- [x] Add FinOps History Truncation (keep only the last 5 interactions).
 
 ## Phase 3: SDK Layer
 - [ ] Implement `src/sdk.py` to wrap the Agent and State Manager.
