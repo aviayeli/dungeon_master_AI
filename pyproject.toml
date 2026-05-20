@@ -1,7 +1,21 @@
 [project]
 name = "dungeon-master-ai"
 version = "0.1.0"
-description = "Add your description here"
+description = "LLM-powered Hebrew Dungeon Master text adventure"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "anthropic>=0.40.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+dungeon-master = "main:main"
+
+[tool.ruff]
+line-length = 150
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.13",
+]

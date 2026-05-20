@@ -2,10 +2,10 @@
 # TODO: Dungeon Master
 
 ## Phase 1: Infrastructure & State
-- [ ] Create `pyproject.toml` and `.env-example`.
-- [ ] Implement `src/config.py` (load constraints).
-- [ ] Implement `src/gatekeeper.py` to prevent API budget overruns.
-- [ ] Implement `src/state.py` (Player dataclass, save/load to JSON).
+- [x] Create `pyproject.toml` and `.env-example`.
+- [x] Implement `src/config.py` (load constraints).
+- [x] Implement `src/gatekeeper.py` to prevent API budget overruns.
+- [x] Implement `src/state.py` (Player dataclass, save/load to JSON).
 
 ## Phase 2: AI Agent & Logic
 - [ ] Implement `WebSearchTool` for real-time data fetching.
