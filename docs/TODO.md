@@ -13,8 +13,8 @@
 - [x] Add FinOps History Truncation (keep only the last 5 interactions).
 
 ## Phase 3: SDK Layer
-- [ ] Implement `src/sdk.py` to wrap the Agent and State Manager.
-- [ ] Ensure all SDK methods interacting with LLMs are non-blocking (async/threading).
+- [x] Implement `src/sdk.py` to wrap the Agent and State Manager.
+- [x] Ensure all SDK methods interacting with LLMs are non-blocking (async/threading).
 
 ## Phase 4: Hebrew GUI (Graphical User Interface)
 - [ ] Implement `src/gui.py` skeleton (Right-to-Left alignment).
