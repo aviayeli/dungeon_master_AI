@@ -25,6 +25,6 @@
 - [x] Add loading animation during LLM thinking.
 
 ## Phase 5: Testing & Constraints
-- [ ] Write 15+ pytest unit tests in `tests/`.
-- [ ] Run `uv run ruff check .` and fix all styling errors.
-- [ ] Ensure no file exceeds 150 lines.
+- [x] Write 15+ pytest unit tests in `tests/`.
+- [x] Run `uv run ruff check .` and fix all styling errors.
+- [x] Ensure no file exceeds 150 lines.
