@@ -1,0 +1,14 @@
+{
+  "player": {
+    "name": "Avi",
+    "character_class": "לוחם",
+    "health": 100,
+    "max_health": 100,
+    "location": "כפר ראשית",
+    "inventory": []
+  },
+  "history": [],
+  "turn_count": 0,
+  "created_at": "2026-05-21T18:46:55.994349",
+  "context_summary": ""
+}

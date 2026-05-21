@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 from src.gui_center import CenterPanel
 from src.gui_panels import LeftPanel, RightPanel
-from src.gui_rtl import rtl
+from src.gui_rtl import bind_rtl_entry, get_rtl_text, rtl, set_rtl_text
 from src.sdk import DungeonMasterSDK
 
 BG = "#1a1a2e"
@@ -59,6 +59,7 @@ class App(tk.Tk):
                                 insertbackground=TEXT, relief="flat", justify="right")
         self._entry.pack(side="left", fill="x", expand=True, padx=(0, 8))
         self._entry.bind("<Return>", lambda _: self._on_send())
+        bind_rtl_entry(self._entry)
         self._entry.focus_set()
 
         btn_row = tk.Frame(bottom, bg=PANEL_BG)
@@ -72,13 +73,13 @@ class App(tk.Tk):
         ]:
             tk.Button(btn_row, text=label, bg=BUTTON_BG, fg=TEXT, font=("Arial", 10),
                        command=cmd, relief="flat", padx=12, pady=3,
-                       cursor="hand2").pack(side="left", padx=3)
+                       cursor="hand2").pack(side="right", padx=3)
 
     def _on_send(self) -> None:
-        text = self._entry.get().strip()
+        text = get_rtl_text(self._entry).strip()
         if not text or self._sdk.is_thinking:
             return
-        self._entry.delete(0, "end")
+        set_rtl_text(self._entry, "")
         self._center.add_player_message(text)
         self._center.start_loading()
         self._right.log_event(f"שלחת: {text[:35]}")
@@ -106,8 +107,7 @@ class App(tk.Tk):
         self._right.log_event(f"שגיאה: {str(exc)[:45]}")
 
     def _quick(self, cmd: str) -> None:
-        self._entry.delete(0, "end")
-        self._entry.insert(0, cmd)
+        set_rtl_text(self._entry, cmd)
         self._on_send()
 
     def _on_save(self) -> None:
